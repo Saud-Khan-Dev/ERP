@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+k4VVwpUWKQ=",
+  "success": true,
+  "projectFilePath": "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Application/AssetsManagement.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/saud/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.4/microsoft.aspnetcore.app.ref.10.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
