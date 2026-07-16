@@ -1,14 +1,20 @@
 public class PurchaseLine : Entity<PurchaseLineId>
 {
-  public PurchaseId PurchaseId { get; private set; } = default!;
-
   public InventoryItemId ItemId { get; private set; } = default!;
 
-  public decimal Quantity { get; private set; }
+  public decimal OrderedQuantity { get; private set; }
 
-  public UnitOfMeasure Unit { get; private set; } = default!;
+  public decimal ReceivedQuantity { get; private set; }
+
+  public UnitOfMeasure UnitOfMeasure { get; private set; } = default!;
 
   public Money UnitPrice { get; private set; } = default!;
 
-  public Money TotalPrice { get; private set; } = default!;
+  public Money DiscountAmount { get; private set; } = default!;
+
+  public Money TaxAmount { get; private set; } = default!;
+
+  public Money LineTotal { get; private set; } = default!;
+
+  public string? Remarks { get; private set; }
 }

@@ -1,4 +1,4 @@
-public enum InventoryStatus
+public enum InventoryItemStatus
 {
   Available = 1,
 

@@ -1,5 +1,8 @@
 public class Purchase : Entity<PurchaseId>
 {
+  private readonly List<PurchaseLine> _lines = new();
+
+  public IReadOnlyCollection<PurchaseLine> Lines => _lines;
   public PersonId SupplierId { get; private set; } = default!;
 
   public DateTime PurchaseDate { get; private set; }
