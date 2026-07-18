@@ -1,4 +1,4 @@
-public class Warehouse : Entity<WarehouseId>
+public class Warehouse : Aggregate<WarehouseId>
 {
 
   public Code Code { get; private set; } = default!;
@@ -21,4 +21,34 @@ public class Warehouse : Entity<WarehouseId>
 
   public Email? Email { get; private set; }
 
+  public static Warehouse Create(
+      WarehouseId warehouseId,
+      Code code,
+      Name name,
+      string description,
+      Address? address,
+      WarehouseType warehouseType,
+      bool isDefault,
+      PersonId? managerId,
+      ContactNumber? contactNumber,
+      Email? email)
+  {
+    ArgumentNullException.ThrowIfNull(code);
+    ArgumentNullException.ThrowIfNull(name);
+
+    return new Warehouse
+    {
+      Id = warehouseId,
+      Code = code,
+      Name = name,
+      Description = description,
+      Address = address,
+      WarehouseType = warehouseType,
+      Status = WarehouseStatus.Active, 
+      IsDefault = isDefault,
+      ManagerId = managerId,
+      ContactNumber = contactNumber,
+      Email = email
+    };
+  }
 }

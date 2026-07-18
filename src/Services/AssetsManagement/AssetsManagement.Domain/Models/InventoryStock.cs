@@ -1,4 +1,4 @@
-public sealed class InventoryStock : Entity<InventoryStockId>
+public sealed class InventoryStock : Aggregate<InventoryStockId>
 {
   public InventoryItemId ItemId { get; private set; } = default!;
 
@@ -8,9 +8,16 @@ public sealed class InventoryStock : Entity<InventoryStockId>
 
   public decimal ReservedQuantity { get; private set; }
 
-  public decimal DamagedQuantity { get; private set; }
+  public static InventoryStock Create(InventoryStockId inventoryStockId, InventoryItemId inventoryItemId, WarehouseId warehouseId, decimal availableQuantity, decimal reservedQuantity)
+  {
+    return new InventoryStock
+    {
+      Id = inventoryStockId,
+      ItemId = inventoryItemId,
+      WarehouseId = warehouseId,
+      AvailableQuantity = availableQuantity,
+      ReservedQuantity = reservedQuantity
+    };
+  }
 
-  public decimal ReorderLevel { get; private set; }
-
-  public decimal ReorderQuantity { get; private set; }
 }

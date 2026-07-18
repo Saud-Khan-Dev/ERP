@@ -1,4 +1,4 @@
-public class InventoryItem : Entity<InventoryItemId>
+public class InventoryItem : Aggregate<InventoryItemId>
 {
   public Code ItemCode { get; private set; } = default!;
   public Name Name { get; private set; } = default!;
@@ -23,6 +23,23 @@ public class InventoryItem : Entity<InventoryItemId>
       InventoryOwnerShipType = inventoryOwnerShipType,
       Status = inventoryItemStatus
     };
+  }
+
+  public void Update(InventoryItemId inventoryItemId, Name name, string description, InventoryTypeId inventoryTypeId, InventoryCategoryId inventoryCategoryId, UnitOfMeasure unitOfMeasure, InventoryOwnerShipType inventoryOwnerShipType, InventoryItemStatus inventoryItemStatus)
+  {
+    Id = inventoryItemId;
+    Name = name;
+    Description = description;
+    InventoryTypeId = inventoryTypeId;
+    InventoryCategoryId = inventoryCategoryId;
+    UnitOfMeasure = unitOfMeasure;
+    InventoryOwnerShipType = inventoryOwnerShipType;
+    Status = inventoryItemStatus;
+  }
+
+  public void ChangeStatus(InventoryItemStatus status)
+  {
+    Status = status;
   }
 
 }

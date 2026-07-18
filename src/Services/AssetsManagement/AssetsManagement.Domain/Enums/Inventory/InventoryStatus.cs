@@ -20,5 +20,9 @@ public enum InventoryItemStatus
 
   Scrapped = 10,
 
-  Disposed = 11
+  Disposed = 11,
+
+  Received = 12,
+  
+  Ordered = 13
 }

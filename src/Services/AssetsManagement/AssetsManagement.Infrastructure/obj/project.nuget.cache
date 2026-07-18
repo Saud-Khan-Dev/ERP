@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tMmglJpOHZ4=",
+  "dgSpecHash": "t9sQDMTsfaM=",
   "success": true,
   "projectFilePath": "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Infrastructure/AssetsManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "/home/saud/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.4/microsoft.aspnetcore.app.ref.10.0.4.nupkg.sha512"
+    "/home/saud/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.9/microsoft.aspnetcore.app.ref.10.0.9.nupkg.sha512"
   ],
   "logs": []
 }

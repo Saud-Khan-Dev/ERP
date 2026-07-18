@@ -1,7 +1,6 @@
-public class Purchase : Entity<PurchaseId>
+public class Purchase : Aggregate<PurchaseId>
 {
   private readonly List<PurchaseLine> _lines = new();
-
   public IReadOnlyCollection<PurchaseLine> Lines => _lines;
   public PersonId SupplierId { get; private set; } = default!;
 
@@ -26,5 +25,72 @@ public class Purchase : Entity<PurchaseId>
   public Money TotalAmount { get; private set; } = default!;
 
   public string? Remarks { get; private set; }
+
+
+  public static Purchase Create(
+    PurchaseId purchaseId,
+    PersonId supplierId,
+    DateTime purchaseDate,
+    Currency currency,
+    Address deliveryAddress,
+    DateTime? expectedDeliveryDate,
+    PaymentTerm paymentTerm,
+    string? remarks)
+  {
+    ArgumentNullException.ThrowIfNull(supplierId);
+    ArgumentNullException.ThrowIfNull(currency);
+    ArgumentNullException.ThrowIfNull(deliveryAddress);
+    ArgumentNullException.ThrowIfNull(paymentTerm);
+
+    return new Purchase
+    {
+      Id = purchaseId,
+      SupplierId = supplierId,
+      PurchaseDate = purchaseDate,
+      Status = PurchaseStatus.Draft,
+      Currency = currency,
+      DeliveryAddress = deliveryAddress,
+      ExpectedDeliveryDate = expectedDeliveryDate,
+      PaymentTerm = paymentTerm,
+      Remarks = remarks,
+
+      SubTotal = Money.Of(0, currency),
+      TaxAmount = Money.Of(0, currency),
+      DiscountAmount = Money.Of(0, currency),
+      TotalAmount = Money.Of(0, currency)
+    };
+  }
+
+  public void AddPurchaseLine(PurchaseLine purchaseLine)
+  {
+    _lines.Add(purchaseLine);
+    RecalculateTotals();
+  }
+
+  public void RemovePurchaseLine(PurchaseLineId purchaseLineId)
+  {
+    var purchaseLine = _lines.FirstOrDefault(p => p.Id == purchaseLineId);
+    if (purchaseLine is not null)
+      _lines.Remove(purchaseLine);
+    RecalculateTotals();
+
+  }
+
+  private void RecalculateTotals()
+  {
+    var subTotal = _lines.Sum(x => x.UnitPrice.Amount * x.OrderedQuantity);
+    var tax = _lines.Sum(x => x.TaxAmount.Amount);
+    var discount = _lines.Sum(x => x.DiscountAmount.Amount);
+
+    SubTotal = Money.Of(subTotal, Currency);
+    TaxAmount = Money.Of(tax, Currency);
+    DiscountAmount = Money.Of(discount, Currency);
+    TotalAmount = Money.Of(subTotal + tax - discount, Currency);
+  }
+
+  public void Approve()
+  {
+    Status = PurchaseStatus.Approved;
+  }
 
 }
