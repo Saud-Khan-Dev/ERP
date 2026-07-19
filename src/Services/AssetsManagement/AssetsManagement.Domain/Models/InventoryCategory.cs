@@ -1,6 +1,11 @@
+//Example
+// Raw Material
+// Finished Goods
+// Consumables
+// Spare Parts
+
 public sealed class InventoryCategory : Entity<InventoryCategoryId>
 {
-
   public InventoryTypeId InventoryTypeId { get; private set; } = default!;
   public Code Code { get; private set; } = default!;
   public Name Name { get; private set; } = default!;
@@ -25,6 +30,6 @@ public sealed class InventoryCategory : Entity<InventoryCategoryId>
   }
   public void Deactivate()
   {
-    IsActive = true;
+    IsActive = false;
   }
 }

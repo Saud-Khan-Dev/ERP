@@ -2,9 +2,9 @@ using System.Text.RegularExpressions;
 
 public sealed record UnitOfMeasure
 {
-  public const int MaxLength = 10;
+  private const int MaxLength = 10;
 
-  public const int MinLength = 1;
+  private const int MinLength = 1;
 
   private static readonly Regex UnitRegex =
       new(@"^[A-Za-z0-9_-]+$", RegexOptions.Compiled);

@@ -1,16 +1,19 @@
 using System.Text.RegularExpressions;
 
-public record Code
+public sealed record Code
 {
-  private const int DefaultLength = 20;
+  private const int DefaultLength = 50;
   public string Value { get; }
 
   private readonly static Regex Pattern = new Regex(@"^CAT-\d{3}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
   private Code(string value) => Value = value;
-  public Code Of(string value)
+  public static Code Of(string value)
   {
     if (string.IsNullOrWhiteSpace(value))
       throw new DomainException("Category code is required.");
+
+    if (value.Length > DefaultLength)
+      throw new DomainException("Category code length is too large.");
 
     value = value.Trim().ToUpperInvariant();
 

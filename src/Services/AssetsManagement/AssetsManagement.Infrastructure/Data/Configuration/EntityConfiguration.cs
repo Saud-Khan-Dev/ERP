@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+public abstract class EntityConfiguration<TEntity, TId> : IEntityTypeConfiguration<TEntity>
+
+where TEntity : Entity<TId>
+
+{
+       public virtual void Configure(EntityTypeBuilder<TEntity> builder)
+       {
+              builder.HasIndex(x => x.Id);
+              builder.Property(x => x.CreatedAt)
+                         .IsRequired();
+
+              builder.Property(x => x.CreatedBy)
+                     .HasMaxLength(100)
+                     .IsRequired();
+
+              builder.Property(x => x.LastModified)
+                     .IsRequired(false);
+
+              builder.Property(x => x.LastModifiedBy)
+                     .HasMaxLength(100)
+                     .IsRequired(false);
+       }
+}
