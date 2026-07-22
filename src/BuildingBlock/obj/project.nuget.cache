@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "q6Pocfg13ZQ=",
+  "dgSpecHash": "Q8L8c++I6W8=",
   "success": true,
   "projectFilePath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj",
   "expectedPackageFiles": [
-    "/home/saud/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.9/microsoft.aspnetcore.app.ref.10.0.9.nupkg.sha512"
+    "/home/saud/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.10/microsoft.aspnetcore.app.ref.10.0.10.nupkg.sha512"
   ],
   "logs": []
 }

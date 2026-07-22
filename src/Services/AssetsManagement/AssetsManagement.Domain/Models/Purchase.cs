@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class Purchase : Aggregate<PurchaseId>
 {
   private readonly List<PurchaseLine> _lines = new();
@@ -35,6 +37,7 @@ public class Purchase : Aggregate<PurchaseId>
     Address deliveryAddress,
     DateTime? expectedDeliveryDate,
     PaymentTerm paymentTerm,
+
     string? remarks)
   {
     ArgumentNullException.ThrowIfNull(supplierId);
@@ -42,7 +45,7 @@ public class Purchase : Aggregate<PurchaseId>
     ArgumentNullException.ThrowIfNull(deliveryAddress);
     ArgumentNullException.ThrowIfNull(paymentTerm);
 
-    return new Purchase
+    var purchase = new Purchase
     {
       Id = purchaseId,
       SupplierId = supplierId,
@@ -59,12 +62,49 @@ public class Purchase : Aggregate<PurchaseId>
       DiscountAmount = Money.Of(0, currency),
       TotalAmount = Money.Of(0, currency)
     };
+    purchase.AddDomainEvent(purchase);
+
+    return purchase;
+  }
+
+
+  public void Update(
+  PersonId supplierId,
+  DateTime purchaseDate,
+  Currency currency,
+  Address deliveryAddress,
+  DateTime? expectedDeliveryDate,
+  PaymentTerm paymentTerm,
+  string? remarks,
+  Money subtotal,
+  Money taxAmount,
+  Money discount,
+  Money totalAmount
+
+  )
+  {
+    SupplierId = supplierId;
+    PurchaseDate = purchaseDate;
+    Status = PurchaseStatus.Draft;
+    Currency = currency;
+    DeliveryAddress = deliveryAddress;
+    ExpectedDeliveryDate = expectedDeliveryDate;
+    PaymentTerm = paymentTerm;
+    Remarks = remarks;
+    SubTotal = subtotal;
+    TaxAmount = taxAmount;
+    DiscountAmount = discount;
+    TotalAmount = totalAmount;
+
+
+    AddDomainEvent(new PurchaseEventUpdated(this));
   }
 
   public void AddPurchaseLine(PurchaseLine purchaseLine)
   {
     _lines.Add(purchaseLine);
     RecalculateTotals();
+    AddDomainEvent(new AddToPurchaseLineEvent(purchaseLine));
   }
 
   public void RemovePurchaseLine(PurchaseLineId purchaseLineId)
@@ -91,6 +131,7 @@ public class Purchase : Aggregate<PurchaseId>
   public void Approve()
   {
     Status = PurchaseStatus.Approved;
+    AddDomainEvent(new PurchaseApprovedEvent());
   }
 
 }

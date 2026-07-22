@@ -1,9 +1,17 @@
-public class Aggregate<TId> : Entity<TId>, IAggregate<TId> 
+public class Aggregate<TId> : Entity<TId>, IAggregate<TId>
 {
-  public IReadOnlyList<IDomainEvent> DomainEvents => throw new NotImplementedException();
+  private List<IDomainEvent> _domainEvents = new();
+  public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+  public void AddDomainEvent(IDomainEvent domainEvent)
+  {
+    _domainEvents.Add(domainEvent);
+  }
 
   public IDomainEvent[] ClearDomainEvents()
   {
-    throw new NotImplementedException();
+    var dequeuedEvents = _domainEvents.ToArray();
+    _domainEvents.Clear();
+    return dequeuedEvents;
   }
 }
