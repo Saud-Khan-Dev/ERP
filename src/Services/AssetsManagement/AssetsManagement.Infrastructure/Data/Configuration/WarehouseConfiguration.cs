@@ -34,15 +34,12 @@ public class WarehouseConfiguration : EntityConfiguration<Warehouse, WarehouseId
         .HasMaxLength(30);
 
 
-        builder.HasKey(x => x.ManagerId);
         builder.Property(x => x.ManagerId)
         .HasConversion(managerId => managerId.Value, dbValue => PersonId.Of(dbValue));
 
-        builder.HasKey(x => x.ContactNumber);
         builder.Property(x => x.ContactNumber)
         .HasConversion(contactNumber => contactNumber.Value, dbValue => ContactNumber.Of(dbValue));
 
-        builder.HasKey(x => x.Email);
         builder.Property(x => x.Email)
         .HasConversion(email => email.Value, dbValue => Email.Of(dbValue));
 

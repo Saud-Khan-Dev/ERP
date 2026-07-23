@@ -11,4 +11,8 @@
     <ProjectReference Include="../AssetsManagement.Domain/AssetsManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.10" />
+  </ItemGroup>
+
 </Project>

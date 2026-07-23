@@ -8,6 +8,7 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
 
     builder.HasKey(x => x.Id);
     builder.Property(x => x.Id)
+    
     .HasConversion(purchaseLineId => purchaseLineId.Value, dbValue => PurchaseLineId.Of(dbValue));
 
     builder.Property(x => x.OrderedQuantity)
@@ -17,10 +18,17 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
     .HasPrecision(18, 4)
     .IsRequired();
 
+    builder.Property(x => x.ItemId)
+    .HasConversion(inventoryItemId => inventoryItemId.Value, dbValue => InventoryItemId.Of(dbValue));
+
+    builder.Property(x => x.PurchaseId)
+    .HasConversion(purchaseId => purchaseId.Value, dbValue => PurchaseId.Of(dbValue));
+
 
     builder.ComplexProperty(x => x.Currency, currency =>
            {
              currency.Property(c => c.Value)
+             
               .HasMaxLength(3)
               .IsRequired();
            });
@@ -32,6 +40,8 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
        .IsRequired();
 
   money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
        .HasMaxLength(3)
        .IsRequired();
 });
@@ -42,6 +52,8 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
        .IsRequired();
 
   money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
        .HasMaxLength(3)
        .IsRequired();
 });
@@ -53,6 +65,8 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
           .IsRequired();
 
      money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
           .HasMaxLength(3)
           .IsRequired();
    });
@@ -70,6 +84,8 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
       .IsRequired();
 
   money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
       .HasMaxLength(3)
       .IsRequired();
 });

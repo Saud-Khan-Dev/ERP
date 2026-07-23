@@ -10,6 +10,7 @@ public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialCons
     builder.Property(x => x.Id)
     .HasConversion(materialConsumptionId => materialConsumptionId.Value, dbValue => MaterialConsumptionId.Of(dbValue));
 
+
     builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);
 
     builder.Property(x => x.Description)
@@ -17,6 +18,11 @@ public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialCons
 
     builder.Property(x => x.InventoryItemId)
     .HasConversion(inventoryItemId => inventoryItemId.Value, dbValue => InventoryItemId.Of(dbValue));
+
+
+    builder.Property(x => x.ProductionOrderId)
+    .HasConversion(productionOrderId => productionOrderId.Value, dbValue => ProductionOrderId.Of(dbValue));
+
 
     builder.Property(x => x.Quantity)
     .HasPrecision(18, 4)
@@ -29,6 +35,8 @@ public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialCons
               .IsRequired();
 
           money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
               .HasMaxLength(3)
               .IsRequired();
         });
@@ -39,6 +47,8 @@ public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialCons
           .IsRequired();
 
       money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
           .HasMaxLength(3)
           .IsRequired();
     });

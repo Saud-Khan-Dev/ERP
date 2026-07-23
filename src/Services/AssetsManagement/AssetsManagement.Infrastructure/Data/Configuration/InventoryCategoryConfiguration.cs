@@ -12,6 +12,11 @@ public class InventoryCategoryConfiguration : EntityConfiguration<InventoryCateg
     .HasConversion(inventoryCategoryId => inventoryCategoryId.Value, dbValue => InventoryCategoryId.Of(dbValue));
 
 
+    builder.Property(x => x.InventoryTypeId)
+    .HasConversion(inventoryTypeId => inventoryTypeId.Value, dbValue => InventoryTypeId.Of(dbValue));
+
+
+
     builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);
 
     builder.Property(x => x.Name)

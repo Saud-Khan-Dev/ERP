@@ -11,7 +11,6 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
     builder.Property(x => x.Id)
     .HasConversion(purchaseId => purchaseId.Value, dbValue => PurchaseId.Of(dbValue));
 
-    builder.HasKey(x => x.SupplierId);
     builder.Property(x => x.SupplierId)
     .HasConversion(supplierId => supplierId.Value, dbValue => PersonId.Of(dbValue));
 
@@ -106,6 +105,8 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
               .IsRequired();
 
           money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
               .HasMaxLength(3)
               .IsRequired();
         });
@@ -118,6 +119,8 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
               .IsRequired();
 
          money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
               .HasMaxLength(3)
               .IsRequired();
        });
@@ -130,6 +133,8 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
               .IsRequired();
 
           money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
               .HasMaxLength(3)
               .IsRequired();
         });
@@ -142,6 +147,8 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
               .IsRequired();
 
         money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
               .HasMaxLength(3)
               .IsRequired();
       });

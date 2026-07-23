@@ -8,7 +8,6 @@ where TEntity : Entity<TId>
 {
        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
        {
-              builder.HasIndex(x => x.Id);
               builder.Property(x => x.CreatedAt)
                          .IsRequired();
 

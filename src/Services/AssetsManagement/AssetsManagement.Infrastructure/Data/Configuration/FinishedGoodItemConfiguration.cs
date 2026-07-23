@@ -10,7 +10,12 @@ public class FinishedGoodItemConfiguration : EntityConfiguration<FinishedGoodIte
     builder.Property(x => x.Id)
     .HasConversion(finishedGoodItemId => finishedGoodItemId.Value, dbValue => FinishedGoodItemId.Of(dbValue));
 
-    builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);
+        builder.Property(x => x.Code)
+        .HasConversion(code => code.Value,
+         dbValue => Code.Of(dbValue))
+         .IsRequired()
+         .HasMaxLength(50);
+     
 
     builder.Property(x => x.Name)
     .HasConversion(productionOrderName => productionOrderName.Value, dbValue => Name.Of(dbValue)).HasMaxLength(100).IsRequired();
@@ -18,10 +23,13 @@ public class FinishedGoodItemConfiguration : EntityConfiguration<FinishedGoodIte
     builder.Property(x => x.Description)
     .IsRequired(false).HasMaxLength(1000);
 
-    builder.Property(x => x.InventoryItemId)
-    .HasConversion(inventoryItemId => inventoryItemId.Value, dbValue => InventoryItemId.Of(dbValue));
+        builder.Property(x => x.InventoryItemId)
+        .HasConversion(inventoryItemId => inventoryItemId.Value, dbValue => InventoryItemId.Of(dbValue));
 
-    builder.Property(x => x.Quantity)
+        builder.Property(x => x.ProductionOrderId)
+        .HasConversion(productionOrderId => productionOrderId.Value, dbValue => ProductionOrderId.Of(dbValue));
+
+        builder.Property(x => x.Quantity)
 .HasPrecision(18, 4)
 .IsRequired();
     builder.ComplexProperty(x => x.UnitCost, money =>
@@ -31,6 +39,7 @@ public class FinishedGoodItemConfiguration : EntityConfiguration<FinishedGoodIte
                   .IsRequired();
 
               money.Property(m => m.Currency)
+                   .HasConversion(currency=>currency.Value,dbValue=>Currency.Of(dbValue))
                   .HasMaxLength(3)
                   .IsRequired();
             });
@@ -41,6 +50,8 @@ public class FinishedGoodItemConfiguration : EntityConfiguration<FinishedGoodIte
           .IsRequired();
 
       money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
           .HasMaxLength(3)
           .IsRequired();
     });
@@ -52,6 +63,8 @@ public class FinishedGoodItemConfiguration : EntityConfiguration<FinishedGoodIte
       .IsRequired();
 
   money.Property(m => m.Currency)
+                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
+
       .HasMaxLength(3)
       .IsRequired();
 });

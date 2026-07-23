@@ -8,9 +8,11 @@ public class InventoryItemConfiguration : EntityConfiguration<InventoryItem, Inv
 
     base.Configure(builder);
     builder.HasKey(x => x.Id);
+    
     builder.Property(x => x.Id).HasConversion(
       inventoryItemId => inventoryItemId.Value, dbId => InventoryItemId.Of(dbId)
     );
+
 
     builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);
 
@@ -19,6 +21,12 @@ public class InventoryItemConfiguration : EntityConfiguration<InventoryItem, Inv
 
     builder.Property(x => x.Description)
     .IsRequired(false).HasMaxLength(1000);
+
+
+    builder.Property(x => x.InventoryCategoryId).HasConversion(
+      inventoryCategoryId => inventoryCategoryId.Value, dbId => InventoryCategoryId.Of(dbId)
+    );
+
 
     builder.HasOne<InventoryCategory>().WithMany()
     .HasForeignKey(f => f.InventoryCategoryId)

@@ -11,6 +11,7 @@ public class ProductionOrderConfiguration : EntityConfiguration<ProductionOrder,
     builder.Property(x => x.Id)
     .HasConversion(productionOrderId => productionOrderId.Value, dbValue => ProductionOrderId.Of(dbValue));
 
+
     builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);
 
     builder.Property(x => x.ProductionOrderName)

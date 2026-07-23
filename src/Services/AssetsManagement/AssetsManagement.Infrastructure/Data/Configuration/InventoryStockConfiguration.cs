@@ -10,6 +10,14 @@ public class InventoryStockConfiguration : EntityConfiguration<InventoryStock, I
     builder.Property(x => x.Id)
     .HasConversion(inventoryStockId => inventoryStockId.Value, dbValue => InventoryStockId.Of(dbValue));
 
+ builder.Property(x => x.ItemId)
+    .HasConversion(inventoryItemId => inventoryItemId.Value, dbValue => InventoryItemId.Of(dbValue));
+
+    builder.Property(x => x.WarehouseId)
+       .HasConversion(warehouseId => warehouseId.Value, dbValue => WarehouseId.Of(dbValue));
+
+
+
     builder.Property(x => x.AvailableQuantity)
     .HasPrecision(18, 4)
     .IsRequired();
