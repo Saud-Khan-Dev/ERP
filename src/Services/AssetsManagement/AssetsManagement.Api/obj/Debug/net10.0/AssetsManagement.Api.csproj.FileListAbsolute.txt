@@ -167,3 +167,10 @@
 /home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/FluentValidation.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/FluentValidation.AspNetCore.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/FluentValidation.DependencyInjectionExtensions.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/Carter.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/Carter.Analyzers.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/Mapster.dll
+/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/bin/Debug/net10.0/Mapster.Core.dll

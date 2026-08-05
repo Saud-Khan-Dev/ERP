@@ -5,7 +5,7 @@ public sealed record Code
   private const int DefaultLength = 50;
   public string Value { get; }
 
-  private readonly static Regex Pattern = new Regex(@"^CAT-\d{3}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+  private readonly static Regex Pattern = new Regex(@"^[A-Z]{3}-\d{3}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
   private Code(string value) => Value = value;
   public static Code Of(string value)
   {

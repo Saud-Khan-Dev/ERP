@@ -6,7 +6,7 @@ public sealed record Name
   public static Name Of(string value)
   {
     ArgumentException.ThrowIfNullOrWhiteSpace(value);
-    ArgumentOutOfRangeException.ThrowIfNotEqual(value.Length, DefaultLength);
+    ArgumentOutOfRangeException.ThrowIfGreaterThan(value.Length, DefaultLength);
 
     return new Name(value);
   }

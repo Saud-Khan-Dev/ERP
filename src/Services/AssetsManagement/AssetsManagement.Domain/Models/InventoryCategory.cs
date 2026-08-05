@@ -6,13 +6,13 @@
 
 public sealed class InventoryCategory : Entity<InventoryCategoryId>
 {
-  public InventoryTypeId InventoryTypeId { get; private set; } = default!;
+  // public InventoryTypeId InventoryTypeId { get; private set; } = default!;
   public Code Code { get; private set; } = default!;
   public Name Name { get; private set; } = default!;
   public string? Description { get; private set; }
   public bool IsActive { get; private set; }
 
-  public static InventoryCategory Create(InventoryCategoryId inventoryCategoryId, Code code, Name name, string description)
+  public static InventoryCategory Create(InventoryCategoryId inventoryCategoryId, Code code, Name name, string description, bool isActive)
   {
     return new InventoryCategory
     {
@@ -20,7 +20,7 @@ public sealed class InventoryCategory : Entity<InventoryCategoryId>
       Code = code,
       Name = name,
       Description = description,
-      IsActive = false
+      IsActive = isActive
     };
   }
 

@@ -9,14 +9,14 @@ where TEntity : Entity<TId>
        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
        {
               builder.Property(x => x.CreatedAt)
-                         .IsRequired();
+              .IsRequired(false);
 
               builder.Property(x => x.CreatedBy)
                      .HasMaxLength(100)
-                     .IsRequired();
+                     .IsRequired(false);
 
               builder.Property(x => x.LastModified)
-                     .IsRequired(false);
+              .IsRequired(false);
 
               builder.Property(x => x.LastModifiedBy)
                      .HasMaxLength(100)

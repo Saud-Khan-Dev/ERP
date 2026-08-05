@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "P3inBMWp9HM=",
+  "dgSpecHash": "UCg4d0jBi8o=",
   "success": true,
   "projectFilePath": "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Application/AssetsManagement.Application.csproj",
   "expectedPackageFiles": [
+    "/home/saud/.nuget/packages/fluentvalidation/12.1.1/fluentvalidation.12.1.1.nupkg.sha512",
+    "/home/saud/.nuget/packages/fluentvalidation.aspnetcore/11.3.1/fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "/home/saud/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "/home/saud/.nuget/packages/mapster/10.0.11/mapster.10.0.11.nupkg.sha512",
+    "/home/saud/.nuget/packages/mapster.core/10.0.11/mapster.core.10.0.11.nupkg.sha512",
     "/home/saud/.nuget/packages/mediatr/14.2.0/mediatr.14.2.0.nupkg.sha512",
     "/home/saud/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/home/saud/.nuget/packages/microsoft.entityframeworkcore/10.0.10/microsoft.entityframeworkcore.10.0.10.nupkg.sha512",

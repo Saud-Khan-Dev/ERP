@@ -12,8 +12,8 @@ public class InventoryCategoryConfiguration : EntityConfiguration<InventoryCateg
     .HasConversion(inventoryCategoryId => inventoryCategoryId.Value, dbValue => InventoryCategoryId.Of(dbValue));
 
 
-    builder.Property(x => x.InventoryTypeId)
-    .HasConversion(inventoryTypeId => inventoryTypeId.Value, dbValue => InventoryTypeId.Of(dbValue));
+    // builder.Property(x => x.InventoryTypeId)
+    // .HasConversion(inventoryTypeId => inventoryTypeId.Value, dbValue => InventoryTypeId.Of(dbValue));
 
 
 

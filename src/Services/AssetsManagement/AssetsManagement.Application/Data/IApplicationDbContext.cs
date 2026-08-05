@@ -9,6 +9,5 @@ public interface IApplicationDbContext
   DbSet<Purchase> Purchases { get; }
   DbSet<PurchaseLine> PurchaseLines { get; }
   DbSet<Warehouse> Warehouses { get; }
-
   Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
