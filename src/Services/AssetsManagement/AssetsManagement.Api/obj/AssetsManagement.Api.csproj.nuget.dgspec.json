@@ -4,14 +4,14 @@
     "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Api/AssetsManagement.Api.csproj": {}
   },
   "projects": {
-    "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj": {
+    "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/BuildingBlock.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj",
+        "projectUniqueName": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/BuildingBlock.csproj",
         "projectName": "BuildingBlock",
-        "projectPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj",
+        "projectPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/BuildingBlock.csproj",
         "packagesPath": "/home/saud/.nuget/packages/",
-        "outputPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/obj/",
+        "outputPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/saud/.nuget/NuGet/NuGet.Config"
@@ -748,8 +748,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj": {
-                "projectPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlock/BuildingBlock.csproj"
+              "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/BuildingBlock.csproj": {
+                "projectPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/BuildingBlocks/BuildingBlock/BuildingBlock.csproj"
               },
               "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Domain/AssetsManagement.Domain.csproj": {
                 "projectPath": "/home/saud/Work/Coding_Env/GDA/ERP/src/Services/AssetsManagement/AssetsManagement.Domain/AssetsManagement.Domain.csproj"

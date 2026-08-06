@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using FluentValidation;
 
 public sealed record CreateCategoryResult(Guid Id);

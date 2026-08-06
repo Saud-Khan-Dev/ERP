@@ -3941,8 +3941,8 @@
     },
     "BuildingBlock/1.0.0": {
       "type": "project",
-      "path": "../../../BuildingBlock/BuildingBlock.csproj",
-      "msbuildProject": "../../../BuildingBlock/BuildingBlock.csproj"
+      "path": "../../../BuildingBlocks/BuildingBlock/BuildingBlock.csproj",
+      "msbuildProject": "../../../BuildingBlocks/BuildingBlock/BuildingBlock.csproj"
     }
   },
   "projectFileDependencyGroups": {
