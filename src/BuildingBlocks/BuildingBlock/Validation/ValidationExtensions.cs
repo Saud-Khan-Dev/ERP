@@ -16,4 +16,12 @@ public static class ValidationExtensions
     .Must(code => CodePattern.IsMatch(code.Trim().ToUpperInvariant()))
     .WithMessage("Code must be in the format ABC-001.");
   }
+
+  public static IRuleBuilderOptions<T, string> Name<T>(this IRuleBuilder<T, string> ruleBuilder)
+  {
+    return ruleBuilder
+    .NotEmpty()
+    .WithMessage("Name is required.")
+    .MaximumLength(100);
+  }
 }

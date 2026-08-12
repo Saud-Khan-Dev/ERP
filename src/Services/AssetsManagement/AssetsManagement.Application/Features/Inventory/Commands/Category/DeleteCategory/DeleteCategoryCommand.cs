@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.VisualBasic;
 
 public sealed record DeleteCategoryResult(bool IsSuccess);
 public sealed record DeleteCategoryCommand(Guid Id) : ICommand<Result<DeleteCategoryResult>>;

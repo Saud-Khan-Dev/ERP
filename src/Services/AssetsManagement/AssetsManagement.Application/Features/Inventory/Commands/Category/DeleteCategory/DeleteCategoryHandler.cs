@@ -9,6 +9,7 @@ public class DeleteCategoryHandler(IApplicationDbContext context) : ICommandHand
     {
       throw new CategoryNotFoundException("Category Not Found");
     }
+
     context.InventoryCategories.Remove(category);
     await context.SaveChangesAsync(cancellationToken);
     return Result<DeleteCategoryResult>.Success(new DeleteCategoryResult(true));
