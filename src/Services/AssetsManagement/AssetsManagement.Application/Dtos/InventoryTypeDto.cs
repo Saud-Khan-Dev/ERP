@@ -1,7 +1,7 @@
 public sealed record InventoryTypeDto(
-  Guid id,
-  Code Code,
-  Name Name,
+  Guid Id,
+  string Code,
+  string Name,
   string Description,
-  InventoryCategoryId InventoryCategoryId
+  Guid InventoryCategoryId
 );

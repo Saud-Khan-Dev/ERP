@@ -8,6 +8,9 @@ where TEntity : Entity<TId>
 {
        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
        {
+              builder.Property(x => x.FileUrl)
+              .HasConversion(file => file.Value, dbValue => FileUrl.Of(dbValue))
+              .IsRequired(false);
               builder.Property(x => x.CreatedAt)
               .IsRequired(false);
 

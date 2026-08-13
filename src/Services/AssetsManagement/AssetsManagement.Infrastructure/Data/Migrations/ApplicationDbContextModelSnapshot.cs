@@ -43,6 +43,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("InventoryItemId")
                         .HasColumnType("uniqueidentifier");
 
@@ -127,6 +130,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -169,6 +175,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("InventoryCategoryId")
                         .HasColumnType("uniqueidentifier");
@@ -236,6 +245,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
@@ -283,6 +295,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("InventoryCategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -325,6 +340,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("InventoryItemId")
                         .HasColumnType("uniqueidentifier");
@@ -408,6 +426,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsApproved")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -460,6 +481,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
 
                     b.Property<DateTime?>("ExpectedDeliveryDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -624,6 +648,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
@@ -772,6 +799,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
@@ -863,6 +893,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)")
                         .HasDefaultValue("NotStarted");
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");

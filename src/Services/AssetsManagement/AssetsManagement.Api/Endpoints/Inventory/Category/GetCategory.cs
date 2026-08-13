@@ -1,6 +1,3 @@
-using Carter;
-using Mapster;
-using MediatR;
 
 public sealed record GetCategoryResponse(CategoryDto Category);
 

@@ -1,7 +1,3 @@
-using Carter;
-using Mapster;
-using MediatR;
-
 public sealed record UpdateCategoryRequest(CategoryDto Category);
 public sealed record UpdateCategoryResponse(bool IsSuccess);
 

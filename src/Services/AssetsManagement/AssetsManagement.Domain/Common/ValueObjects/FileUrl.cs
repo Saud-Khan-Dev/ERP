@@ -1,6 +1,6 @@
 public sealed record FileUrl(string Value)
 {
-  public static FileUrl Create(string value)
+  public static FileUrl Of(string value)
   {
     if (string.IsNullOrWhiteSpace(value))
       throw new ArgumentException("File URL cannot be empty.", nameof(value));

@@ -1,6 +1,3 @@
-using Carter;
-using Mapster;
-using MediatR;
 
 public record GetCategoriesResponse(IEnumerable<CategoryDto> Categories);
 

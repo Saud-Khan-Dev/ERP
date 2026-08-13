@@ -20,4 +20,12 @@ public sealed class InventoryType : Entity<InventoryTypeId>
     };
   }
 
+  public void Update(Code code, Name name, string description)
+  {
+    Code = code;
+    Name = name;
+    Description = description;
+
+  }
+
 }

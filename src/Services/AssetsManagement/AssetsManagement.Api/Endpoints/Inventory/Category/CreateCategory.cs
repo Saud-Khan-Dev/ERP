@@ -1,7 +1,3 @@
-using Carter;
-using Mapster;
-using MediatR;
-
 public sealed record CreateCategoryRequest(CategoryDto Category);
 public record CreateCategoryResponse(Guid Id);
 
