@@ -1,6 +1,6 @@
 using FluentValidation;
 
-public record GetInventoryTypeResult(InventoryType InventoryType);
+public record GetInventoryTypeResult(InventoryTypeDto InventoryType);
 public sealed record GetInventoryTypeQuery(Guid Id):IQuery<Result<GetInventoryTypeResult>>;
 
 public class GetInventoryTypeQueryValidator : AbstractValidator<GetInventoryTypeQuery>

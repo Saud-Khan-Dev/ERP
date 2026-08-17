@@ -25,7 +25,6 @@ public sealed class InventoryType : Entity<InventoryTypeId>
     Code = code;
     Name = name;
     Description = description;
-
   }
 
 }

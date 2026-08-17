@@ -4,7 +4,7 @@ public class DeleteInventoryTypeHandler(IApplicationDbContext context) : IComman
 {
   public async Task<Result<DeleteInventoryTypeResult>> Handle(DeleteInventoryTypeCommand command, CancellationToken cancellationToken)
   {
-    var inventory = await context.InventoryTypes.FirstOrDefaultAsync(x => x.Id.Value == command.Id);
+    var inventory = await context.InventoryTypes.FirstOrDefaultAsync(x => x.Id == InventoryTypeId.Of(command.Id), cancellationToken);
     if (inventory == null)
     {
       throw new InventoryNotFoundException("Inventory Type NotFound");

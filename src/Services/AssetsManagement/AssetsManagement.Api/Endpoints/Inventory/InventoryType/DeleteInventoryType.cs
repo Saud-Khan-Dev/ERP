@@ -5,8 +5,8 @@ public class DeleteInventoryType : ICarterModule
   {
     app.MapDelete("/categories/inventoryTypes/{Id}", async (Guid Id, ISender sender) =>
     {
-      var result = await sender.Send(new DeleteCategoryCommand(Id));
-      var response = result.Value.Adapt<DeleteInventoryTypeCommand>();
+      var result = await sender.Send(new DeleteInventoryTypeCommand(Id));
+      var response = result.Value.Adapt<DeleteInventoryTypeResponse>();
       return Results.Ok(response);
     })
         .WithName("DeleteInventoryType")

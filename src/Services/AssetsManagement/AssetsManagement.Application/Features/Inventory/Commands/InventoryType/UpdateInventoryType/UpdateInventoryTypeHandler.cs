@@ -4,7 +4,7 @@ public class UpdateInventoryTypeHandler(IApplicationDbContext context) : IComman
 {
   public async Task<Result<UpdateInventoryTypeResult>> Handle(UpdateInventoryTypeCommand command, CancellationToken cancellationToken)
   {
-    var inventory = await context.InventoryTypes.FirstOrDefaultAsync(x => x.Id.Value == command.Id);
+    var inventory = await context.InventoryTypes.FirstOrDefaultAsync(x => x.Id == InventoryTypeId.Of(command.Id));
     if (inventory == null)
     {
       throw new InventoryNotFoundException("Inventory Type NotFound");
@@ -17,6 +17,6 @@ public class UpdateInventoryTypeHandler(IApplicationDbContext context) : IComman
 
   private void UpdateInventoryType(InventoryType inventoryType, InventoryTypeDto inventoryTypeDto)
   {
-    inventoryType.Update(Code.Of(inventoryTypeDto.Code), Name.Of(inventoryTypeDto.Name), inventoryType.Description!);
+    inventoryType.Update(Code.Of(inventoryTypeDto.Code), Name.Of(inventoryTypeDto.Name), inventoryTypeDto.Description ?? "");
   }
 }
