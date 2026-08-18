@@ -23,13 +23,13 @@ public class InventoryItemConfiguration : EntityConfiguration<InventoryItem, Inv
     .IsRequired(false).HasMaxLength(1000);
 
 
-    builder.Property(x => x.InventoryCategoryId).HasConversion(
-      inventoryCategoryId => inventoryCategoryId.Value, dbId => InventoryCategoryId.Of(dbId)
+    builder.Property(x => x.InventoryTypeId).HasConversion(
+      inventoryTypeId => inventoryTypeId.Value, dbId => InventoryTypeId.Of(dbId)
     );
 
 
-    builder.HasOne<InventoryCategory>().WithMany()
-    .HasForeignKey(f => f.InventoryCategoryId)
+    builder.HasOne<InventoryType>().WithMany()
+    .HasForeignKey(f => f.InventoryTypeId)
     .IsRequired();
 
     builder.HasMany<InventoryStock>()

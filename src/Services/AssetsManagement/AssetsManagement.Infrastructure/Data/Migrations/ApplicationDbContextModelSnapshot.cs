@@ -179,15 +179,15 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
                     b.Property<string>("FileUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("InventoryCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("InventoryOwnerShipType")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)")
                         .HasDefaultValue("Purchase");
+
+                    b.Property<Guid>("InventoryTypeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -224,7 +224,7 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InventoryCategoryId");
+                    b.HasIndex("InventoryTypeId");
 
                     b.ToTable("InventoryItems");
                 });
@@ -940,9 +940,9 @@ namespace AssetsManagement.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("InventoryItem", b =>
                 {
-                    b.HasOne("InventoryCategory", null)
+                    b.HasOne("InventoryType", null)
                         .WithMany()
-                        .HasForeignKey("InventoryCategoryId")
+                        .HasForeignKey("InventoryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
