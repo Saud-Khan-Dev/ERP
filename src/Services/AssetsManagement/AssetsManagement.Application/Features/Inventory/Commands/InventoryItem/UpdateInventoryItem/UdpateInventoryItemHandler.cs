@@ -21,7 +21,7 @@ public class UdpateInventoryItemHandler(IApplicationDbContext context) : IComman
     name: Name.Of(inventoryItem.Name),
     description: inventoryItem.Description,
     inventoryTypeId: InventoryTypeId.Of(inventoryItem.InventoryTypeId),
-    unitOfMeasure: inventoryItem.UnitOfMeasure.Adapt<UnitOfMeasure>(),
+    unitOfMeasure: UnitOfMeasure.Of(inventoryItem.UnitOfMeasure.Unit, inventoryItem.UnitOfMeasure.Value),
     inventoryOwnerShipType: inventoryItem.InventoryOwnerShipType,
     inventoryItemStatus: inventoryItem.InventoryItemStatus
     );

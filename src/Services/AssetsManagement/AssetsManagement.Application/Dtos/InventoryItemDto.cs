@@ -3,6 +3,7 @@ public sealed record InventoryItemDto(
   string Code,
   string Name,
   string Description,
+  string? FileUrl,
   Guid InventoryTypeId,
   UnitOfMeasureDto UnitOfMeasure,
   InventoryOwnerShipType InventoryOwnerShipType,

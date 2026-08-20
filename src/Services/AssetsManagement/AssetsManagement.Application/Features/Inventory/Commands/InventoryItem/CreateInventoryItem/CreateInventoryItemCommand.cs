@@ -1,4 +1,3 @@
-using System.Reflection;
 using FluentValidation;
 
 public record CreateInventoryItemResult(Guid Id);

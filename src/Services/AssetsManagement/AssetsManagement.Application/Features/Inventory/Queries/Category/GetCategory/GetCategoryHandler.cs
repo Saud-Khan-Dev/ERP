@@ -10,8 +10,8 @@ public class GetCategoryHandler(IApplicationDbContext context) : IQueryHandler<G
     {
       throw new CategoryNotFoundException("Category Not Found");
     }
-    
-    var result = new CategoryDto(Id: category.Id.Value, Code: category.Code.Value, Name: category.Name.Value, Description: category.Description, IsActive: category.IsActive);
+
+    var result = new CategoryDto(Id: category.Id.Value, Code: category.Code.Value, Name: category.Name.Value, Description: category.Description, IsActive: category.IsActive, FileUrl: category.FileUrl?.Value ?? "");
 
     return Result<GetCategoryResult>.Success(new GetCategoryResult(result));
   }

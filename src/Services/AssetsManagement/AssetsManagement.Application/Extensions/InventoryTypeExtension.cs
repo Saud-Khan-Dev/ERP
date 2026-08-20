@@ -6,6 +6,7 @@ public static class InventoryTypeExtension
       Id: i.Id.Value,
       Code: i.Code.Value,
       Name: i.Name.Value,
+      FileUrl: i.FileUrl?.Value ?? "",
       Description: i.Description ?? "",
       InventoryCategoryId: i.InventoryCategoryId.Value
     ));

@@ -15,6 +15,7 @@ public class GetInventoryTypeHandler(IApplicationDbContext context) : IQueryHand
       Code: inventory.Code.Value,
       Name: inventory.Name.Value,
       Description: inventory.Description ?? "",
+      FileUrl:inventory.FileUrl?.Value??"",
       InventoryCategoryId: inventory.InventoryCategoryId.Value
     )));
     throw new NotImplementedException();

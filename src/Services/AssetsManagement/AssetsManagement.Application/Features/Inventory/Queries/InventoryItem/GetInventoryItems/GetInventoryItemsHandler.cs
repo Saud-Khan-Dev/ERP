@@ -15,13 +15,13 @@ public class GetInventoryItemsHandler(IApplicationDbContext context) : IQueryHan
                           Code: i.Code.Value,
                           Name: i.Name.Value,
                           Description: i.Description ?? "",
+                          FileUrl: i.FileUrl.Value ?? "",
                           InventoryTypeId: i.InventoryTypeId.Value,
                           UnitOfMeasure: new UnitOfMeasureDto(
                               i.UnitOfMeasure.Unit,
                               i.UnitOfMeasure.Value
                           ),
                           InventoryOwnerShipType: i.InventoryOwnerShipType,
-
                           InventoryItemStatus: i.Status
                    ))
                    .ToList()

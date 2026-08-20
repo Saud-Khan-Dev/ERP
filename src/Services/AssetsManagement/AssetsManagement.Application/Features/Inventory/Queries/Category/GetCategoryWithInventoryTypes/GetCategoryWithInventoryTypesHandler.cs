@@ -16,6 +16,7 @@ public class GetCategoryWithInventoryTypesHandler(IApplicationDbContext context)
         Code: i.Code.Value,
         Name: i.Name.Value,
         Description: i.Description ?? "",
+        FileUrl: i.FileUrl.Value ?? "",
         InventoryCategoryId: i.InventoryCategoryId.Value
       )).ToList()
      )).FirstOrDefaultAsync();
