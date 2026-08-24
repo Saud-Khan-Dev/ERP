@@ -1,1 +1,1 @@
-public sealed record AddToPurchaseLineEvent(PurchaseLine PurchaseLine) : IDomainEvent;
+public sealed record AddToPurchaseLineEvent(IList<PurchaseLine> PurchaseLines) : IDomainEvent;

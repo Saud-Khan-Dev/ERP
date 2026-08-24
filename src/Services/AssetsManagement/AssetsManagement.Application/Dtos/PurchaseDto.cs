@@ -8,7 +8,7 @@ public sealed record PurchaseDto(
  DateTime? ExpectedDeliveryDate,
  PaymentTermDto PaymentTerm,
  string? Remarks,
- PurchaseLineDto Line
+ IList<PurchaseLineDto> Lines
 );
 
 

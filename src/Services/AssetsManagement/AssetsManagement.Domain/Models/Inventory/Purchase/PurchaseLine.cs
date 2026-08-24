@@ -49,6 +49,43 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
     };
   }
 
+  public void Update(
+    InventoryItemId inventoryItemId,
+    decimal orderedQuantity,
+    decimal receivedQuantity,
+    UnitOfMeasure unitOfMeasure,
+    Money unitPrice,
+    decimal discountAmount,
+    decimal taxAmount,
+    string? remarks)
+  {
+    ArgumentNullException.ThrowIfNull(inventoryItemId);
+    ArgumentNullException.ThrowIfNull(unitOfMeasure);
+    ArgumentNullException.ThrowIfNull(unitPrice);
+    ArgumentNullException.ThrowIfNull(discountAmount);
+    ArgumentNullException.ThrowIfNull(taxAmount);
+
+    if (orderedQuantity <= 0)
+      throw new DomainException(
+          "Ordered quantity must be greater than zero.");
+
+    if (receivedQuantity < 0)
+      throw new DomainException(
+          "Received quantity cannot be negative.");
+
+    if (receivedQuantity > orderedQuantity)
+      throw new DomainException(
+          "Received quantity cannot exceed ordered quantity.");
+
+    OrderedQuantity = orderedQuantity;
+    ReceivedQuantity = receivedQuantity;
+    UnitOfMeasure = unitOfMeasure;
+    UnitPrice = unitPrice;
+    DiscountAmount = discountAmount;
+    TaxAmount = taxAmount;
+    Remarks = remarks;
+  }
+
   private static decimal CalculateLineTotal(
     decimal quantity,
     Money unitPrice,

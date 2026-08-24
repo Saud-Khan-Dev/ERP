@@ -6,7 +6,7 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
   {
     var purchase = CreatePurchase(command.Purchase);
     await context.Purchases.AddAsync(purchase);
-    await context.SaveChangesAsync(cancellationToken);
+    // await context.SaveChangesAsync(cancellationToken);
     return Result<CreatePurchaseCommandResult>.Success(new CreatePurchaseCommandResult(purchase.Id.Value));
   }
 
@@ -35,18 +35,21 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
           remarks: purchaseDto.Remarks
         );
 
-    var lines = PurchaseLine.Create(
+    var lines = purchaseDto.Lines.Select(
+
+      pl=>  PurchaseLine.Create(
             purchaseLineId: PurchaseLineId.Of(Guid.NewGuid()),
             purchaseId: PurchaseId.Of(purchase.Id.Value),
-            inventoryItemId: InventoryItemId.Of(purchaseDto.Line.ItemId),
-            orderedQuantity: purchaseDto.Line.OrderedQuantity,
-            receivedQuantity: purchaseDto.Line.ReceivedQuantity,
-            unitOfMeasure: UnitOfMeasure.Of(purchaseDto.Line.UnitOfMeasure.Unit, purchaseDto.Line.UnitOfMeasure.Value),
-            unitPrice: Money.Of(purchaseDto.Line.UnitPrice.Amount,Currency.Of(purchaseDto.Currency)),
-            discountAmount: purchaseDto.Line.DiscountAmount,
-            taxAmount: purchaseDto.Line.TaxAmount,
-            remarks: purchaseDto.Line.Remarks
-        );
+            inventoryItemId: InventoryItemId.Of(pl.ItemId),
+            orderedQuantity: pl.OrderedQuantity,
+            receivedQuantity: pl.ReceivedQuantity,
+            unitOfMeasure: UnitOfMeasure.Of(pl.UnitOfMeasure.Unit, pl.UnitOfMeasure.Value),
+            unitPrice: Money.Of(pl.UnitPrice.Amount, Currency.Of(pl.Currency)),
+            discountAmount: pl.DiscountAmount,
+            taxAmount: pl.TaxAmount,
+            remarks: pl.Remarks
+        ) 
+    ).ToList();
 
     purchase.AddPurchaseLine(lines);
 

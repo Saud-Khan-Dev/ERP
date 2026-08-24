@@ -70,38 +70,34 @@ public class Purchase : Aggregate<PurchaseId>
 
 
   public void Update(
-  PersonId supplierId,
-  DateTime purchaseDate,
-  Currency currency,
-  Address deliveryAddress,
-  DateTime? expectedDeliveryDate,
-  PaymentTerm paymentTerm,
-  string? remarks,
-  Money subtotal,
-  Money taxAmount,
-  Money discount,
-  Money totalAmount
-
-  )
+      PersonId supplierId,
+      DateTime purchaseDate,
+      Currency currency,
+      Address deliveryAddress,
+      DateTime? expectedDeliveryDate,
+      PaymentTerm paymentTerm,
+      PurchaseStatus status,
+      string? remarks)
   {
+    ArgumentNullException.ThrowIfNull(supplierId);
+    ArgumentNullException.ThrowIfNull(currency);
+    ArgumentNullException.ThrowIfNull(deliveryAddress);
+    ArgumentNullException.ThrowIfNull(paymentTerm);
+
     SupplierId = supplierId;
     PurchaseDate = purchaseDate;
-    Status = PurchaseStatus.Draft;
+    Status = status;
     Currency = currency;
     DeliveryAddress = deliveryAddress;
     ExpectedDeliveryDate = expectedDeliveryDate;
     PaymentTerm = paymentTerm;
     Remarks = remarks;
-    SubTotal = subtotal;
-    TaxAmount = taxAmount;
-    DiscountAmount = discount;
-    TotalAmount = totalAmount;
 
+    RecalculateTotals();
 
     AddDomainEvent(new PurchaseEventUpdated(this));
   }
-
-  public void AddPurchaseLine(PurchaseLine purchaseLine)
+  public void AddPurchaseLine(IList<PurchaseLine> purchaseLine)
   {
     _lines.AddRange(purchaseLine);
     RecalculateTotals();
