@@ -2,7 +2,9 @@
 public class Purchase : Aggregate<PurchaseId>
 {
   private readonly List<PurchaseLine> _lines = new();
+
   public IReadOnlyCollection<PurchaseLine> Lines => _lines;
+
   public PersonId SupplierId { get; private set; } = default!;
 
   public DateTime PurchaseDate { get; private set; }
@@ -32,11 +34,11 @@ public class Purchase : Aggregate<PurchaseId>
     PurchaseId purchaseId,
     PersonId supplierId,
     DateTime purchaseDate,
+    PurchaseStatus purchaseStatus,
     Currency currency,
     Address deliveryAddress,
     DateTime? expectedDeliveryDate,
     PaymentTerm paymentTerm,
-
     string? remarks)
   {
     ArgumentNullException.ThrowIfNull(supplierId);
@@ -49,7 +51,7 @@ public class Purchase : Aggregate<PurchaseId>
       Id = purchaseId,
       SupplierId = supplierId,
       PurchaseDate = purchaseDate,
-      Status = PurchaseStatus.Draft,
+      Status = purchaseStatus,
       Currency = currency,
       DeliveryAddress = deliveryAddress,
       ExpectedDeliveryDate = expectedDeliveryDate,
@@ -101,7 +103,7 @@ public class Purchase : Aggregate<PurchaseId>
 
   public void AddPurchaseLine(PurchaseLine purchaseLine)
   {
-    _lines.Add(purchaseLine);
+    _lines.AddRange(purchaseLine);
     RecalculateTotals();
     AddDomainEvent(new AddToPurchaseLineEvent(purchaseLine));
   }
@@ -118,8 +120,8 @@ public class Purchase : Aggregate<PurchaseId>
   private void RecalculateTotals()
   {
     var subTotal = _lines.Sum(x => x.UnitPrice.Amount * x.OrderedQuantity);
-    var tax = _lines.Sum(x => x.TaxAmount.Amount);
-    var discount = _lines.Sum(x => x.DiscountAmount.Amount);
+    var tax = _lines.Sum(x => x.TaxAmount);
+    var discount = _lines.Sum(x => x.DiscountAmount);
 
     SubTotal = Money.Of(subTotal, Currency);
     TaxAmount = Money.Of(tax, Currency);

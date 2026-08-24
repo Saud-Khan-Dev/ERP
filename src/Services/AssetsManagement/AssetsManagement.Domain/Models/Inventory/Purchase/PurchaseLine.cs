@@ -5,19 +5,28 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
   public decimal OrderedQuantity { get; private set; }
   public decimal ReceivedQuantity { get; private set; }
   public UnitOfMeasure UnitOfMeasure { get; private set; } = default!;
-  public Currency Currency { get; private set; } = default!;
   public Money UnitPrice { get; private set; } = default!;
 
-  public Money DiscountAmount { get; private set; } = default!;
+  public decimal DiscountAmount { get; private set; } = default!;
 
-  public Money TaxAmount { get; private set; } = default!;
+  public decimal TaxAmount { get; private set; } = default!;
 
-  public Money LineTotal { get; private set; } = default!;
+  public decimal LineTotal { get; private set; } = default!;
 
   public string? Remarks { get; private set; }
 
 
-  public static PurchaseLine Create(PurchaseLineId purchaseLineId, PurchaseId purchaseId, InventoryItemId inventoryItemId, decimal orderedQuantity, decimal receivedQuantity, UnitOfMeasure unitOfMeasure, Money unitPrice, Money discountAmount, Money taxAmount, Currency currency, string? remarks)
+  public static PurchaseLine Create(
+    PurchaseLineId purchaseLineId,
+    PurchaseId purchaseId,
+    InventoryItemId inventoryItemId,
+    decimal orderedQuantity,
+    decimal receivedQuantity,
+    UnitOfMeasure unitOfMeasure,
+    Money unitPrice,
+    decimal discountAmount,
+    decimal taxAmount,
+    string? remarks)
   {
     return new PurchaseLine
     {
@@ -28,32 +37,26 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
       ReceivedQuantity = receivedQuantity,
       UnitOfMeasure = unitOfMeasure,
       UnitPrice = unitPrice,
-      Currency = currency,
       DiscountAmount = discountAmount,
       TaxAmount = taxAmount,
       LineTotal = CalculateLineTotal(
                 orderedQuantity,
                 unitPrice,
                 discountAmount,
-                taxAmount,
-                currency
+                taxAmount
                 ),
       Remarks = remarks
     };
   }
 
-  private static Money CalculateLineTotal(
+  private static decimal CalculateLineTotal(
     decimal quantity,
     Money unitPrice,
-    Money discountAmount,
-    Money taxAmount,
-    Currency currency
+    decimal discountAmount,
+    decimal taxAmount
     )
   {
-    decimal amount = (unitPrice.Amount * quantity) - discountAmount.Amount + taxAmount.Amount;
-    return Money.Of(
-      amount
-      , currency
-    );
+    decimal amount = (unitPrice.Amount * quantity) - discountAmount + taxAmount;
+    return amount;
   }
 }

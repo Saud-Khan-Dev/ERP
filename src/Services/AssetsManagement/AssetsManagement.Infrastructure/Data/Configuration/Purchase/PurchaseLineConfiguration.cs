@@ -8,7 +8,7 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
 
     builder.HasKey(x => x.Id);
     builder.Property(x => x.Id)
-    
+
     .HasConversion(purchaseLineId => purchaseLineId.Value, dbValue => PurchaseLineId.Of(dbValue));
 
     builder.Property(x => x.OrderedQuantity)
@@ -24,15 +24,6 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
     builder.Property(x => x.PurchaseId)
     .HasConversion(purchaseId => purchaseId.Value, dbValue => PurchaseId.Of(dbValue));
 
-
-    builder.ComplexProperty(x => x.Currency, currency =>
-           {
-             currency.Property(c => c.Value)
-             
-              .HasMaxLength(3)
-              .IsRequired();
-           });
-
     builder.ComplexProperty(x => x.UnitPrice, money =>
 {
   money.Property(m => m.Amount)
@@ -45,31 +36,13 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
        .HasMaxLength(3)
        .IsRequired();
 });
-    builder.ComplexProperty(x => x.DiscountAmount, money =>
-{
-  money.Property(m => m.Amount)
-       .HasPrecision(18, 2)
+    builder.Property(x => x.DiscountAmount
+    ).HasPrecision(18, 2)
        .IsRequired();
 
-  money.Property(m => m.Currency)
-                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
-
-       .HasMaxLength(3)
+    builder.Property(x => x.TaxAmount
+    ).HasPrecision(18, 2)
        .IsRequired();
-});
-
-    builder.ComplexProperty(x => x.TaxAmount, money =>
-   {
-     money.Property(m => m.Amount)
-          .HasPrecision(18, 2)
-          .IsRequired();
-
-     money.Property(m => m.Currency)
-                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
-
-          .HasMaxLength(3)
-          .IsRequired();
-   });
 
 
     builder.ComplexProperty(x => x.UnitOfMeasure, uomBuilder =>
@@ -77,18 +50,8 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
       uomBuilder.Property(x => x.Unit).HasMaxLength(10).IsRequired();
       uomBuilder.Property(x => x.Value).IsRequired().HasPrecision(18, 4);
     });
-    builder.ComplexProperty(x => x.LineTotal, money =>
-{
-  money.Property(m => m.Amount)
-      .HasPrecision(18, 2)
-      .IsRequired();
-
-  money.Property(m => m.Currency)
-                   .HasConversion(currency => currency.Value, dbValue => Currency.Of(dbValue))
-
-      .HasMaxLength(3)
-      .IsRequired();
-});
+    builder.Property(x => x.LineTotal
+    ).IsRequired();
 
     builder.Property(x => x.Remarks)
         .IsRequired(false)
