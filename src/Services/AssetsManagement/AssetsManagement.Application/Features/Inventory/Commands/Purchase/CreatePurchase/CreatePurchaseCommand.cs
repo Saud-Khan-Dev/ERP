@@ -36,11 +36,11 @@ public class PurchaseDtoValidator : AbstractValidator<PurchaseDto>
         .IsInEnum()
         .WithMessage("Invalid payment term.");
 
-    RuleFor(x => x.Line)
-        .NotNull()
-        .WithMessage("Purchase lines are required.")
-        .WithMessage("Purchase must contain at least one line.")
-        .SetValidator(new PurchaseLineDtoValidator());
+        RuleFor(x => x.Lines)
+            .NotNull()
+            .WithMessage("Purchase lines are required.")
+            .WithMessage("Purchase must contain at least one line.")
+            .ForEach(x => x.SetValidator(new PurchaseLineDtoValidator()));
   }
 }
 
