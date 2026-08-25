@@ -26,7 +26,9 @@ public class InventoryItemConfiguration : EntityConfiguration<InventoryItem, Inv
     builder.Property(x => x.InventoryTypeId).HasConversion(
       inventoryTypeId => inventoryTypeId.Value, dbId => InventoryTypeId.Of(dbId)
     );
-
+    builder.Property(x => x.FileUrl)
+    .HasConversion(file => file.Value, dbValue => FileUrl.Of(dbValue))
+    .IsRequired(false);
 
     builder.HasOne<InventoryType>().WithMany()
     .HasForeignKey(f => f.InventoryTypeId)

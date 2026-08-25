@@ -5,7 +5,16 @@ public class GetPurchaseHandler(IApplicationDbContext context) : IQueryHandler<G
 {
   public async Task<Result<GetPurchaseQueryResult>> Handle(GetPurchaseQuery query, CancellationToken cancellationToken)
   {
-    var purchase = await context.PurchaseLines.FirstOrDefaultAsync(p => p.Id == PurchaseLineId.Of(query.Id));
+    var purchase = await context.Purchases.
+     Where(p => p.Id == PurchaseId.Of(query.Id))
+     .Select(p => new
+     {
+       Purchase = p,
+       Lines = context.PurchaseLines
+        .Where(pl => pl.PurchaseId == p.Id)
+            .ToList()
+     }).FirstOrDefaultAsync(cancellationToken)
+    ;
     if (purchase == null)
     {
       throw new PurchaseNotFoundException("Purchase does Not Exist");

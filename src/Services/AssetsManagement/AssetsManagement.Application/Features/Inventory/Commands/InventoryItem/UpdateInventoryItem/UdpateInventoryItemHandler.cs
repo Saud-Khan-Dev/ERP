@@ -23,7 +23,9 @@ public class UdpateInventoryItemHandler(IApplicationDbContext context) : IComman
     inventoryTypeId: InventoryTypeId.Of(inventoryItem.InventoryTypeId),
     unitOfMeasure: UnitOfMeasure.Of(inventoryItem.UnitOfMeasure.Unit, inventoryItem.UnitOfMeasure.Value),
     inventoryOwnerShipType: inventoryItem.InventoryOwnerShipType,
-    inventoryItemStatus: inventoryItem.InventoryItemStatus
+    inventoryItemStatus: inventoryItem.InventoryItemStatus,
+
+    fileUrl:FileUrl.Of(inventoryItem.FileUrl)
     );
   }
 }

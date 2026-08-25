@@ -9,9 +9,9 @@ public record PurchaseLineDto(
     MoneyDto UnitPrice,
     decimal DiscountAmount,
     decimal TaxAmount,
-    string? Remarks
+    string? Remarks,
+    FileUrl? FileUrl
 );
-
 
 
 public sealed record MoneyDto(

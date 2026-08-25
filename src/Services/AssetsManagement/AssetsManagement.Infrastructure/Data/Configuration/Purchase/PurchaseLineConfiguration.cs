@@ -24,6 +24,9 @@ public class PurchaseLineConfiguration : EntityConfiguration<PurchaseLine, Purch
     builder.Property(x => x.PurchaseId)
     .HasConversion(purchaseId => purchaseId.Value, dbValue => PurchaseId.Of(dbValue));
 
+    builder.Property(x => x.FileUrl)
+    .HasConversion(file => file.Value, dbValue => FileUrl.Of(dbValue))
+    .IsRequired(false);
     builder.ComplexProperty(x => x.UnitPrice, money =>
 {
   money.Property(m => m.Amount)

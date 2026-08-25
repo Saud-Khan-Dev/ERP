@@ -6,7 +6,6 @@ public static class CategoryExtension
       Id: x.Id.Value,
       Code: x.Code.Value,
       Name: x.Name.Value,
-      FileUrl: x.FileUrl?.Value ?? "",
       Description: x.Description ?? "Not Provided",
       IsActive: x.IsActive
     )).ToList();

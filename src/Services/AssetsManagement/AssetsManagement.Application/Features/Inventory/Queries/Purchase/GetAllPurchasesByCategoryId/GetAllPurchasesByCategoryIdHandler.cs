@@ -29,14 +29,38 @@ public class GetAllPurchasesByCategoryIdHandler(IApplicationDbContext context) :
     )
     .Where(
       x => x.type.InventoryCategoryId == InventoryCategoryId.Of(request.CategoryId)
-      )
-    .SumAsync(x => x.line.LineTotal, cancellationToken);
+      ).ToListAsync();
 
+    var result = purchase
+        .Select(p => new PurchaseLineDto(
+            Id: p.line.Id.Value,
+            ItemId: p.line.ItemId.Value,
+            PurchaseId: p.line.PurchaseId.Value,
+            OrderedQuantity: p.line.OrderedQuantity,
+            ReceivedQuantity: p.line.ReceivedQuantity,
 
+            UnitOfMeasure: new UnitOfMeasureDto(
+                Unit: p.line.UnitOfMeasure.Unit,
+                Value: p.line.UnitOfMeasure.Value
+            ),
 
-    Console.WriteLine(purchase);
+            Currency: p.line.UnitPrice.Currency.Value,
 
+            UnitPrice: new MoneyDto(
+                Amount: p.line.UnitPrice.Amount,
+                Currency: new CurrencyDto(
+                    Code: p.line.UnitPrice.Currency.Value
+                )
+            ),
 
-    return Result<GetAllPurchasesByCategoryIdQueryResult>.Success(new GetAllPurchasesByCategoryIdQueryResult());
+            DiscountAmount: p.line.DiscountAmount,
+            TaxAmount: p.line.TaxAmount,
+            Remarks: p.line.Remarks,
+
+            FileUrl: p.line.FileUrl
+        ))
+        .ToList();
+
+    return Result<GetAllPurchasesByCategoryIdQueryResult>.Success(new GetAllPurchasesByCategoryIdQueryResult(result));
   }
 }

@@ -14,6 +14,7 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
   public decimal LineTotal { get; private set; } = default!;
 
   public string? Remarks { get; private set; }
+  public FileUrl? FileUrl { get; set; }
 
 
   public static PurchaseLine Create(
@@ -26,7 +27,9 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
     Money unitPrice,
     decimal discountAmount,
     decimal taxAmount,
-    string? remarks)
+    string? remarks,
+    FileUrl? fileUrl
+    )
   {
     return new PurchaseLine
     {
@@ -45,7 +48,8 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
                 discountAmount,
                 taxAmount
                 ),
-      Remarks = remarks
+      Remarks = remarks,
+      FileUrl = fileUrl
     };
   }
 
@@ -57,7 +61,10 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
     Money unitPrice,
     decimal discountAmount,
     decimal taxAmount,
-    string? remarks)
+    string? remarks,
+    FileUrl? fileUrl
+
+    )
   {
     ArgumentNullException.ThrowIfNull(inventoryItemId);
     ArgumentNullException.ThrowIfNull(unitOfMeasure);
@@ -84,6 +91,7 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
     DiscountAmount = discountAmount;
     TaxAmount = taxAmount;
     Remarks = remarks;
+    FileUrl = fileUrl;
   }
 
   private static decimal CalculateLineTotal(

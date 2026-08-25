@@ -26,8 +26,7 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
     .HasForeignKey(f=>f.PurchaseId)
     .IsRequired();
 
-
-    builder.Property(x => x.PurchaseDate)
+        builder.Property(x => x.PurchaseDate)
     .IsRequired();
 
     builder.Property(x => x.Status)

@@ -22,7 +22,9 @@ public class CreateInventoryItemHandler(IApplicationDbContext context) : IComman
             inventoryItem.UnitOfMeasure.Unit,
             inventoryItem.UnitOfMeasure.Value),
         inventoryOwnerShipType: inventoryItem.InventoryOwnerShipType,
-        inventoryItemStatus: inventoryItem.InventoryItemStatus
+        inventoryItemStatus: inventoryItem.InventoryItemStatus,
+
+        fileUrl: FileUrl.Of(inventoryItem.FileUrl)
     );
   }
 }

@@ -2,55 +2,58 @@ using Microsoft.EntityFrameworkCore;
 
 public class UpdatePurchaseLineHandler(IApplicationDbContext context) : ICommandHandler<UpdatePurchaseLineCommand, Result<UpdatePurchaseLineCommandResult>>
 {
-  public async Task<Result<UpdatePurchaseLineCommandResult>> Handle(UpdatePurchaseLineCommand command, CancellationToken cancellationToken)
-  {
-    var purchaseLine = await context.PurchaseLines
-       .FirstOrDefaultAsync(p => p.Id == PurchaseLineId.Of(command.Id));
-
-    if (purchaseLine == null)
+    public async Task<Result<UpdatePurchaseLineCommandResult>> Handle(UpdatePurchaseLineCommand command, CancellationToken cancellationToken)
     {
-      throw new PurchaseNotFoundException("No Purchase Line Exist");
+        var purchaseLine = await context.PurchaseLines
+           .FirstOrDefaultAsync(p => p.Id == PurchaseLineId.Of(command.Id));
+
+        if (purchaseLine == null)
+        {
+            throw new PurchaseNotFoundException("No Purchase Line Exist");
+        }
+
+        UpdatePurchaseLine(purchaseLine, command.PurchaseLine);
+        await context.SaveChangesAsync(cancellationToken);
+        return Result<UpdatePurchaseLineCommandResult>.Success(new UpdatePurchaseLineCommandResult(true));
     }
 
-    UpdatePurchaseLine(purchaseLine, command.PurchaseLine);
-    await context.SaveChangesAsync(cancellationToken);
-    return Result<UpdatePurchaseLineCommandResult>.Success(new UpdatePurchaseLineCommandResult(true));
-  }
 
+    private void UpdatePurchaseLine(
+        PurchaseLine line,
+        PurchaseLineDto lineDto)
+    {
+        var unitPrice = Money.Of(
+            lineDto.UnitPrice.Amount,
+            Currency.Of(
+                lineDto.UnitPrice.Currency.Code));
+        line.Update(
+            inventoryItemId:
+                InventoryItemId.Of(
+                    lineDto.ItemId),
 
-  private void UpdatePurchaseLine(
-      PurchaseLine line,
-      PurchaseLineDto lineDto)
-  {
-    var unitPrice = Money.Of(
-        lineDto.UnitPrice.Amount,
-        Currency.Of(
-            lineDto.UnitPrice.Currency.Code));
-    line.Update(
-        inventoryItemId:
-            InventoryItemId.Of(
-                lineDto.ItemId),
+            orderedQuantity:
+                lineDto.OrderedQuantity,
 
-        orderedQuantity:
-            lineDto.OrderedQuantity,
+            receivedQuantity:
+                lineDto.ReceivedQuantity,
 
-        receivedQuantity:
-            lineDto.ReceivedQuantity,
+            unitOfMeasure:
+                UnitOfMeasure.Of(
+                    lineDto.UnitOfMeasure.Unit,
+                    lineDto.UnitOfMeasure.Value),
 
-        unitOfMeasure:
-            UnitOfMeasure.Of(
-                lineDto.UnitOfMeasure.Unit,
-                lineDto.UnitOfMeasure.Value),
+            unitPrice:
+                unitPrice,
 
-        unitPrice:
-            unitPrice,
+            discountAmount: lineDto.DiscountAmount,
 
-        discountAmount: lineDto.DiscountAmount,
+            taxAmount:
+                lineDto.TaxAmount,
 
-        taxAmount:
-            lineDto.TaxAmount,
+            remarks:
+                lineDto.Remarks,
 
-        remarks:
-            lineDto.Remarks);
-  }
+            fileUrl: lineDto.FileUrl
+                );
+    }
 }

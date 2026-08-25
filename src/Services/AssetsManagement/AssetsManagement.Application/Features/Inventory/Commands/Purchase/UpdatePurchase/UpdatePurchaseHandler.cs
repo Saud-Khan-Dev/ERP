@@ -46,7 +46,8 @@ public class UpdatePurchaseHandler(IApplicationDbContext context) : ICommandHand
         expectedDeliveryDate: purchaseDto.ExpectedDeliveryDate,
         paymentTerm: paymentTerm,
         status: purchaseDto.Status,
-        remarks: purchaseDto.Remarks);
+        remarks: purchaseDto.Remarks
+        );
   }
 
 

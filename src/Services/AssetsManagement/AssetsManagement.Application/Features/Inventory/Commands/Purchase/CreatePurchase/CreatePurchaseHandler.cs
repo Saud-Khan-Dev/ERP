@@ -28,7 +28,7 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
             purchaseDto.DeliveryAddress.Longitude,
             purchaseDto.DeliveryAddress.Latitude),
             expectedDeliveryDate: purchaseDto.ExpectedDeliveryDate,
-            paymentTerm:PaymentTerm.Of(
+            paymentTerm: PaymentTerm.Of(
                 purchaseDto.PaymentTerm.Code,
                 purchaseDto.PaymentTerm.DueDays,
                 purchaseDto.PaymentTerm.AdvancePercentage),
@@ -37,7 +37,7 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
 
     var lines = purchaseDto.Lines.Select(
 
-      pl=>  PurchaseLine.Create(
+      pl => PurchaseLine.Create(
             purchaseLineId: PurchaseLineId.Of(Guid.NewGuid()),
             purchaseId: PurchaseId.Of(purchase.Id.Value),
             inventoryItemId: InventoryItemId.Of(pl.ItemId),
@@ -47,8 +47,10 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
             unitPrice: Money.Of(pl.UnitPrice.Amount, Currency.Of(pl.Currency)),
             discountAmount: pl.DiscountAmount,
             taxAmount: pl.TaxAmount,
-            remarks: pl.Remarks
-        ) 
+            remarks: pl.Remarks,
+            fileUrl:pl.FileUrl
+
+        )
     ).ToList();
 
     purchase.AddPurchaseLine(lines);

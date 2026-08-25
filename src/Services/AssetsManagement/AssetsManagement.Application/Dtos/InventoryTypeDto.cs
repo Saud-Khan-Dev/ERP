@@ -3,6 +3,5 @@ public sealed record InventoryTypeDto(
   string Code,
   string Name,
   string Description,
-  string? FileUrl,
   Guid InventoryCategoryId
 );

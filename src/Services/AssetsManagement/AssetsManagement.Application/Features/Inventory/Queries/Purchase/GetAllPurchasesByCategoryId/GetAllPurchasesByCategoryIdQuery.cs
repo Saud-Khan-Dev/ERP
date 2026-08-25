@@ -1,6 +1,6 @@
 using FluentValidation;
 
-public sealed record GetAllPurchasesByCategoryIdQueryResult();
+public sealed record GetAllPurchasesByCategoryIdQueryResult(IEnumerable<PurchaseLineDto> PurchaseLine);
 
 public sealed record GetAllPurchasesByCategoryIdQuery(Guid CategoryId) : IQuery<Result<GetAllPurchasesByCategoryIdQueryResult>>;
 
