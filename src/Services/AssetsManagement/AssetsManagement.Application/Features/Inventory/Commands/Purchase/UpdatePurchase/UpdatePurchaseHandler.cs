@@ -1,3 +1,4 @@
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 
 public class UpdatePurchaseHandler(IApplicationDbContext context) : ICommandHandler<UpdatePurchaseCommand, Result<UpdatePurchaseCommandResult>>
@@ -36,7 +37,8 @@ public class UpdatePurchaseHandler(IApplicationDbContext context) : ICommandHand
     var paymentTerm = PaymentTerm.Of(
         purchaseDto.PaymentTerm.Code,
         purchaseDto.PaymentTerm.DueDays,
-        purchaseDto.PaymentTerm.AdvancePercentage);
+        purchaseDto.PaymentTerm.AdvancePercentage
+        );
 
     purchase.Update(
         supplierId: PersonId.Of(purchaseDto.SupplierId),
@@ -48,6 +50,33 @@ public class UpdatePurchaseHandler(IApplicationDbContext context) : ICommandHand
         status: purchaseDto.Status,
         remarks: purchaseDto.Remarks
         );
+
+
+    foreach (var p in purchase.Lines)
+    {
+      p.Update(
+       inventoryItemId: InventoryItemId.Of(p.ItemId.Value),
+
+       orderedQuantity: p.OrderedQuantity,
+
+       receivedQuantity: p.ReceivedQuantity,
+
+       unitOfMeasure: UnitOfMeasure.Of(p.UnitOfMeasure.Unit, p.UnitOfMeasure.Value),
+
+       unitPrice: Money.Of(
+         amount: p.UnitPrice.Amount,
+
+         currency:Currency.Of(p.UnitPrice.Currency.Value)
+       ),
+
+       discountAmount: p.DiscountAmount,
+
+       taxAmount: p.TaxAmount,
+
+       remarks: p.Remarks,
+       fileUrl: p.FileUrl
+      );
+    }
   }
 
 

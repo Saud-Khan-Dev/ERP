@@ -57,7 +57,7 @@ public class GetAllPurchasesByCategoryIdHandler(IApplicationDbContext context) :
             TaxAmount: p.line.TaxAmount,
             Remarks: p.line.Remarks,
 
-            FileUrl: p.line.FileUrl
+            FileUrl:p.line.FileUrl
         ))
         .ToList();
 

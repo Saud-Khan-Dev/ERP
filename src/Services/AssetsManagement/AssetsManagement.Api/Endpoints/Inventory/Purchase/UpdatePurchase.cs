@@ -5,7 +5,7 @@ public class UpdatePurchase : ICarterModule
 {
   public void AddRoutes(IEndpointRouteBuilder app)
   {
-    app.MapPut("/purchase/{id}", async (Guid Id, UpdatePurchaseRequest request, ISender sender) =>
+    app.MapPut("/purchases/{id}", async (Guid Id, UpdatePurchaseRequest request, ISender sender) =>
 {
   var result = await sender.Send(new UpdatePurchaseCommand(Id, request.Purchase));
   var response = result.Value.Adapt<UpdatePurchaseResponse>();

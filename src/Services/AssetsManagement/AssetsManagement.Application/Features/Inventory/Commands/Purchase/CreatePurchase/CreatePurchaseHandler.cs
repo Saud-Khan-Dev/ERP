@@ -6,7 +6,7 @@ public class CreatePurchaseHandler(IApplicationDbContext context) : ICommandHand
   {
     var purchase = CreatePurchase(command.Purchase);
     await context.Purchases.AddAsync(purchase);
-    // await context.SaveChangesAsync(cancellationToken);
+    await context.SaveChangesAsync(cancellationToken);
     return Result<CreatePurchaseCommandResult>.Success(new CreatePurchaseCommandResult(purchase.Id.Value));
   }
 
