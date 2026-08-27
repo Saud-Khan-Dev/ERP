@@ -1,4 +1,4 @@
-public sealed class MaterialConsumption : Entity<MaterialConsumptionId>
+public sealed class MaterialConsumption : Entity<AssetId>
 {
   public const int DescriptionMaxLength = 1000;
   public Code Code { get; private set; } = default!;
@@ -10,7 +10,7 @@ public sealed class MaterialConsumption : Entity<MaterialConsumptionId>
   public Money TotalCost { get; private set; } = default!;
 
   public static MaterialConsumption Create(
-          MaterialConsumptionId id,
+          AssetId id,
           Code code,
           string description,
           InventoryItemId inventoryItemId,

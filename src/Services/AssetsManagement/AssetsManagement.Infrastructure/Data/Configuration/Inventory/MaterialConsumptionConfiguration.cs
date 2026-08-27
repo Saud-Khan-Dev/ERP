@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialConsumption, MaterialConsumptionId>
+public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialConsumption, AssetId>
 {
   public override void Configure(EntityTypeBuilder<MaterialConsumption> builder)
   {
@@ -8,7 +8,7 @@ public class MaterialConsumptionConfiguration : EntityConfiguration<MaterialCons
 
     builder.HasKey(x => x.Id);
     builder.Property(x => x.Id)
-    .HasConversion(materialConsumptionId => materialConsumptionId.Value, dbValue => MaterialConsumptionId.Of(dbValue));
+    .HasConversion(materialConsumptionId => materialConsumptionId.Value, dbValue => AssetId.Of(dbValue));
 
 
     builder.Property(x => x.Code).HasConversion(code => code.Value, dbValue => Code.Of(dbValue)).IsRequired().HasMaxLength(50);

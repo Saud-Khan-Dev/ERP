@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
   public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
   public DbSet<InventoryCategory> InventoryCategories => Set<InventoryCategory>();
 
   public DbSet<InventoryItem> InventoryItems => Set<InventoryItem>();
@@ -18,6 +17,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
   public DbSet<PurchaseLine> PurchaseLines => Set<PurchaseLine>();
 
   public DbSet<Warehouse> Warehouses => Set<Warehouse>();
+
+  public DbSet<Asset> Assets => Set<Asset>();
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
