@@ -92,6 +92,12 @@ public sealed class PurchaseLine : Entity<PurchaseLineId>
     TaxAmount = taxAmount;
     Remarks = remarks;
     FileUrl = fileUrl;
+    LineTotal = CalculateLineTotal(
+                orderedQuantity,
+                unitPrice,
+                discountAmount,
+                taxAmount
+                );
   }
 
   private static decimal CalculateLineTotal(

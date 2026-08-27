@@ -24,7 +24,8 @@ public class PurchaseConfiguration : EntityConfiguration<Purchase, PurchaseId>
     builder.HasMany<PurchaseLine>()
     .WithOne()
     .HasForeignKey(f=>f.PurchaseId)
-    .IsRequired();
+    .IsRequired()
+    .OnDelete(DeleteBehavior.Cascade);
 
         builder.Property(x => x.PurchaseDate)
     .IsRequired();
