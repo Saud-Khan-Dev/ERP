@@ -20,6 +20,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
   public DbSet<Asset> Assets => Set<Asset>();
 
+  public DbSet<Scrap> Scraps => Set<Scrap>();
+
   protected override void OnModelCreating(ModelBuilder builder)
   {
     builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
