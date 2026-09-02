@@ -3,6 +3,7 @@ public class PlantItem : Entity<PlantItemId>
   public Code Code { get; private set; } = default!;
   public Name Name { get; private set; } = default!;
   public string Description { get; private set; } = default!;
+  public PlantId PlantId { get; private set; } = default!;
   public ManufacturerId ManufacturerId { get; private set; } = default!;
   public string Model { get; private set; } = default!;
   public string SerialNumber { get; private set; } = default!;
@@ -18,6 +19,7 @@ public class PlantItem : Entity<PlantItemId>
           Guid plantItemId,
           Code code,
           Name name,
+          PlantId plantId,
           string description,
           ManufacturerId manufacturerId,
           string model,
@@ -43,7 +45,8 @@ public class PlantItem : Entity<PlantItemId>
       Unit = unit,
       Capacity = capacity,
       WarrantyExpirationDate = warrantyExpirationDate,
-      SupplierId = supplierId
+      SupplierId = supplierId,
+      PlantId = plantId
     };
   }
 
@@ -53,6 +56,7 @@ public class PlantItem : Entity<PlantItemId>
         Name name,
         string description,
         ManufacturerId manufacturerId,
+        PlantId plantId,
         string model,
         string serialNumber,
         DateTime installationDateTime,
@@ -74,6 +78,7 @@ public class PlantItem : Entity<PlantItemId>
     Capacity = capacity;
     WarrantyExpirationDate = warrantyExpirationDate;
     SupplierId = supplierId;
+    PlantId = plantId;
   }
 
 }

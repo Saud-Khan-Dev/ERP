@@ -12,6 +12,11 @@ public class PhysicalConfiguration : EntityConfiguration<Physical, PhysicalId>
       physical => physical.Value, dbId => PhysicalId.Of(dbId)
     );
 
+    builder.Property(x => x.AssetId)
+    .HasConversion(
+      assetId => assetId.Value, dbId => AssetId.Of(dbId)
+    );
+
     builder.HasOne<Asset>()
     .WithOne()
     .HasForeignKey<Physical>(x => x.AssetId)
