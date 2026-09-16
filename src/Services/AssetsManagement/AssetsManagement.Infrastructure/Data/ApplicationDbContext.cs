@@ -22,6 +22,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
   public DbSet<Scrap> Scraps => Set<Scrap>();
 
+  public DbSet<Physical> Physicals => Set<Physical>();
+
   protected override void OnModelCreating(ModelBuilder builder)
   {
     builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

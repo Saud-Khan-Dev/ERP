@@ -6,9 +6,14 @@ public sealed class ManufacturerConfiguration
 {
   public override void Configure(EntityTypeBuilder<Manufacturer> builder)
   {
-    base.Configure(builder);
+        base.Configure(builder);
 
-    builder.Property(x => x.Name)
+        builder.Property(x => x.Id).HasConversion(
+               personId => personId.Value, dbId => ManufacturerId.Of(dbId)
+             );
+
+
+                builder.Property(x => x.Name)
     .HasConversion(name => name.Value, dbValue => Name.Of(dbValue)).HasMaxLength(100).IsRequired();
 
     builder.Property(x => x.Description)

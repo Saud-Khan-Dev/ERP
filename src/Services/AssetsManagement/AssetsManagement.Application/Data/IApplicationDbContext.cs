@@ -11,6 +11,8 @@ public interface IApplicationDbContext
   DbSet<Warehouse> Warehouses { get; }
   DbSet<Asset> Assets { get; }
   DbSet<Scrap> Scraps { get; }
+  DbSet<Physical> Physicals { get; }
+
 
 
   Task<int> SaveChangesAsync(CancellationToken cancellationToken);

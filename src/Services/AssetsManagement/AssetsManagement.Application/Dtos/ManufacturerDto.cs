@@ -1,4 +1,4 @@
-public sealed record Manufacturer(
+public sealed record ManufacturerDto(
 Guid Id,
 string Name,
 string? Description,
