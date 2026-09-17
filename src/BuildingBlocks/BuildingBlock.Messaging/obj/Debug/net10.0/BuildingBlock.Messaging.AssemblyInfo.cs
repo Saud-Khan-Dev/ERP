@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BuildingBlock.Messaging")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af2bad8daf37e2bc8f4261bbbc8d4f3387a9ab4d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4e1fdf3f89181b54c7c59acb98df3a393219fc3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BuildingBlock.Messaging")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BuildingBlock.Messaging")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

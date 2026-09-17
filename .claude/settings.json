@@ -27,7 +27,9 @@
       "Bash(xargs -I{} echo \"{} source files created\")",
       "Bash(curl -s \"http://localhost:5199/attribute-definitions\")",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\)['attributeDefinitions']; print\\(len\\(d\\),'attrs across',sorted\\(set\\(a['group'] for a in d\\)\\)\\)\")",
-      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\)['attributeDefinitions']; print\\([a['code'] for a in d]\\)\")"
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\)['attributeDefinitions']; print\\([a['code'] for a in d]\\)\")",
+      "Bash(dotnet remove *)",
+      "Bash(dotnet add *)"
     ]
   }
 }

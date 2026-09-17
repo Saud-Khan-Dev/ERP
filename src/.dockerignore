@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/.idea/
+**/*.user
+**/*.swp
+**/Dockerfile*
+**/docker-compose*
+**/.git
+**/.gitignore
+**/.dockerignore
+**/appsettings.Development.json
+**/secrets.dev.yaml
+**/values.dev.yaml
